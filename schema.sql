@@ -1,0 +1,44 @@
+DROP TABLE IF EXISTS 'user';
+CREATE TABLE user (
+	id SERIAL PRIMARY KEY,
+	login_name VARCHAR,
+	password VARCHAR,
+	date_created TIMESTAMP DEFAULT now(),
+	last_login TIMESTAMP DEFAULT now()
+);
+
+DROP TABLE IF EXISTS 'player';
+CREATE TABLE player (
+	id SERIAL PRIMARY KEY,
+	user_id INTEGER NOT NULL UNIQUE REFERENCES user,
+	name VARCHAR NOT NULL UNIQUE,
+	level INTEGER,
+	exp INTEGER,
+	game_count INTEGER
+);
+
+
+DROP TABLE IF EXISTS 'card';
+CREATE TABLE card (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR,
+	rarity INTEGER,
+	image_url VARCHAR
+);
+
+DROP TABLE IF EXISTS 'card_action';
+CREATE TABLE card_action (
+	id SERIAL PRIMARY KEY,
+	card_id INTEGER NOT NULL REFERENCES card
+	event VARCHAR NOT NULL,
+	action VARCHAR NOT NULL,
+	params VARCHAR[]
+)
+
+
+DROP TABLE IF EXISTS 'player_card';
+CREATE TABLE player_card (
+	id SERIAL PRIMARY KEY,
+	card_id INTEGER NOT NULL REFERENCES card,
+	player_id INTEGER NOT NULL REFERENCES player
+)

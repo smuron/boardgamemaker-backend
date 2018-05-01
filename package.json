@@ -1,0 +1,20 @@
+{
+  "name": "pcard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maketosa",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.0",
+    "knex": "^0.14.4",
+    "pg": "^7.4.1",
+    "socket.io": "^2.1.0"
+  }
+}

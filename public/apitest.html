@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+API Tester<br/>
+Endpoint: <input type="text" id="endpoint" value='http://localhost:8000/auth' /><br/>
+Method: <select id="method">
+<option>GET</option>
+<option>POST</option>
+<option>DELETE</option>
+</select><br/>
+Auth: <input type="text" id="authhead" /><br/>
+Body: <textarea columns='60' rows='10' id='jsonbody'></textarea><br/>
+<button id="testsubmit">Submit</button><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+Result: <textarea id='result'></textarea>
+<script>
+	document.getElementById('testsubmit').addEventListener('click', function() {
+
+		fetch(document.getElementById('endpoint').value, {
+			// body: document.getElementById('jsonbody')
+			cache: 'no-cache',
+			method: document.getElementById('method').value,
+			headers: {
+				"Authorization": document.getElementById('authhead').value
+			}
+		}).then(function(result) {
+			console.log(result);
+			result.text().then(function(x) {
+				document.getElementById('result').value = x;
+			});
+		}).catch(function(err) {
+			console.log(err,'while fetching endpoint');
+		})
+		return false;
+	})
+</script>
+</body>
+</html>
