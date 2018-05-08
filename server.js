@@ -36,7 +36,7 @@ app.get('/apitest', function(req,res) {
 });
 
 app.get('/auth', function(req,res) {
-	let token = jwt.sign({username: "me"}, JWT_SECRET, {expiresIn: 6000000});
+	let token = jwt.sign({username: req.query.username ? req.query.username : "debug" }, JWT_SECRET, {expiresIn: 6000000});
 	res.send(token);
 });
 app.post('/register', bodyParser.urlencoded(), function(req,res) {
